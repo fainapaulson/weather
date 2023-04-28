@@ -1,0 +1,12 @@
+body{
+    background-image: url(./images/image7.webp);
+    background-size: cover;
+
+}
+button{
+    width: 100px;
+}
+#result2{
+    opacity: 5;
+    
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+        <link rel="stylesheet" href="./weather.css">
+        <script src="https://kit.fontawesome.com/eb4779542c.js" crossorigin="anonymous"></script>
+
+</head>
+<body class="">
+    <div class="row">
+        <div class="col-3 container w-100 text-center mt-5 ">
+            <p class="text-light fs-2 ">Click the button to get your location.</p>
+
+<button  class=" bg-warning " onclick="getLocation()">Try It</button>
+
+<p id="demo"></p>
+        </div>
+        <div class="col-3 fs-3 w-50 container text-center text-primary-emphasis" id="result"></div>
+        <div class="col-3 fs-2 mt-5 w-25 " id="result2"></div>
+        <div class="col-3"></div>
+    </div>
+    
+</body>
+<script>
+    var x = document.getElementById("demo");
+    
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
+    function showPosition(position) {
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=kakkanad&appid=b41ec3be35c7dac8aabbc21ba253137a`).then(data=>data.json())
+.then(data=>displayData(data))
+// let x=position.coords.longitude
+// let y=position.coords.latitude
+
+    }
+    function displayData(cData) {
+
+  cityname=cData.name
+  const kelvin = 273;
+  tempmax=Math.floor(cData.main.temp_max- kelvin) + "°C";
+  tempmin=Math.floor(cData.main.temp_min- kelvin) + "°C";
+wind=cData.wind.speed
+humidity=cData.main.humidity
+var currentdate = new Date();
+result.innerHTML=`${cityname}
+  <div><i class="fa-solid fa-temperature-high"></i>${tempmax}</div>  
+  <div><i class="fa-solid fa-temperature-low"></i>${tempmin}</div> 
+  <div class="mt-5">wind = ${wind}km/hr</div>
+  <div>humidity=${humidity}%</div>
+  `
+  result2.innerHTML=`${currentdate } `
+
+
+
+
+    }
+
+    
+    </script>
+</html>

@@ -10,17 +10,27 @@
         <script src="https://kit.fontawesome.com/eb4779542c.js" crossorigin="anonymous"></script>
 
 </head>
-<body class="">
-    <div class="row">
+<body class="row">
+<!-- navbar -->
+  <nav class="navbar bg-secondary-subtle">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="./images/10.jpg" alt="Logo" width="60" height="38" class="d-inline-block align-text-top">
+          WEATHER MAP
+      </a>
+    </div>
+  </nav>
+<!-- first div -->
+    <div >
         <div class="col-3 container w-100 text-center mt-5 ">
-            <p class="text-light fs-2 ">Click the button to get your location.</p>
+            <p class="text-light fs-2 ">Click Here For Weather Details</p>
 
-<button  class=" bg-warning " onclick="getLocation()">Try It</button>
+<button type="button" onclick="getLocation()" class="btn btn-primary">Try It</button>
 
 <p id="demo"></p>
         </div>
         <div class="col-3 fs-3 w-50 container text-center text-primary-emphasis" id="result"></div>
-        <div class="col-3 fs-2 mt-5 w-25 " id="result2"></div>
+        <div class="col-3 fs-2 mt-5 w-25 " id="result2">
         <div class="col-3"></div>
     </div>
     
@@ -51,18 +61,25 @@
 wind=cData.wind.speed
 humidity=cData.main.humidity
 var currentdate = new Date();
-result.innerHTML=`${cityname}
-  <div><i class="fa-solid fa-temperature-high"></i>${tempmax}</div>  
-  <div><i class="fa-solid fa-temperature-low"></i>${tempmin}</div> 
-  <div class="mt-5">wind = ${wind}km/hr</div>
-  <div>humidity=${humidity}%</div>
-  `
-  result2.innerHTML=`${currentdate } `
+result.innerHTML=`
+<div class="card text-center shadow-lg p-3 mb-5 bg-body-tertiary rounded opacity-75">
+            <div class="card-header">
+              ${cityname}
+            </div>
+            <div class="card-body">
+              <h5 class="card-title"><i class="fa-solid fa-temperature-high"></i>${tempmax}</h5>
+              <h5 class="card-title"><i class="fa-solid fa-temperature-low"></i>${tempmin}</h5>
 
+              <p class="card-text">wind = ${wind}km/hr</p>
+              <p class="card-text">humidity=${humidity}%</p>
 
-
-
-    }
+            </div>
+            <div class="card-footer text-body-secondary">
+              ${currentdate }
+            </div>
+          </div>
+        </div>   `
+  }
 
     
     </script>
